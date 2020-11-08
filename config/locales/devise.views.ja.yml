@@ -2,13 +2,29 @@ ja:
   activerecord:
     attributes:
       user:
+        name: "ニックネーム"
         current_password: "現在のパスワード"
         email: "メールアドレス"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
+        publish_setting: "公開設定"
         remember_me: "ログインを記憶"
     models:
-      user: "ユーザ"
+      user: "ユーザー"
+    errors:
+      models:
+        user:
+          :attributes:
+            email:
+              blank: "が空になっています"
+            password:
+              blank: "が空になっています"
+              too_short: "は６文字以上に設定してください"
+            password_confirmation:
+              confirmation: "が先に入力したパスワードと異なっています"
+            current_password:
+              blank: "が空になっています"
+              invalid: "が異なっています"
   devise:
     confirmations:
       new:
@@ -36,18 +52,18 @@ ja:
         confirm_new_password: "確認用新しいパスワード"
         new_password: "新しいパスワード"
       new:
-        forgot_your_password: "パスワードを忘れましたか?"
+        forgot_your_password: "パスワードを忘れた場合はこちら"
         send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
     registrations:
       edit:
-        are_you_sure: "本当に良いですか?"
-        cancel_my_account: "アカウント削除"
+        are_you_sure: "データはすべて削除されてしまいますが、よろしいですか?"
+        cancel_my_account: "退会"
         currently_waiting_confirmation_for_email: "%{email} の確認待ち"
-        leave_blank_if_you_don_t_want_to_change_it: "空欄のままなら変更しません"
+        leave_blank_if_you_don_t_want_to_change_it: "パスワードを変更しない場合、空欄のままにしてください"
         title: "%{resource}編集"
-        unhappy: "気に入りません"
+        unhappy: "下記のボタンを押すと、アカウント情報は削除され退会します"
         update: "更新"
-        we_need_your_current_password_to_confirm_your_changes: "変更を反映するには現在のパスワードを入力してください"
+        we_need_your_current_password_to_confirm_your_changes: "登録情報を変更する際は、現在のパスワードを入力してください"
       new:
         sign_up: "アカウント登録"
     sessions:

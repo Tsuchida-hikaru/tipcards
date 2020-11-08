@@ -4,8 +4,13 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, maxlengh: "6", autofocus: true, autocomplete: "ニックネーム（最大６文字）" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "メールアドレス" %>
   </div>
 
   <div class="field">
@@ -13,16 +18,21 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "パスワード" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "パスワード（再確認）" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :publish_setting %><br />
+    カードの公開デフォルト設定：<%= f.radio_button :publish_setting, "true", checked: true %>公開<%= f.radio_button :publish_setting, "false" %>非公開
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "登録情報を送信する" %>
   </div>
 <% end %>
 

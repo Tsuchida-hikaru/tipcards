@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :index
   before_action :move_to_index, except: [:index, :show]
 
   def index
@@ -14,4 +15,5 @@ class PagesController < ApplicationController
       redirect_to action: :index
     end
   end
+  
 end

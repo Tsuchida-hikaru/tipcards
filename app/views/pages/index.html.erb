@@ -1,6 +1,15 @@
 <h1>トップページ</h1>
 <div class="container">
-  <div class="contents">
+  <div class="card-form">
+    <%= form_with model: @card, local: true do |f| %>
+      <%= f.text_field :title, placeholder: "カードのタイトル" %>
+      <%= f.text_area :text, placeholder: "本文" %>
+      <%= f.label :image, for: "file-input", class: "far fa-images fa-lg" do %>
+        <%= f.file_field :image, id: "file-input", style: "display: none;" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="card-contents">
     <% @cards.each do |card|%>
       <% if card.publish_setting == true %>
         <div class="content-post">
@@ -12,6 +21,9 @@
           <div class="card">
             <p class="card-title"><%= card.title %></p>
             <p class="card-text"><%= card.text %></p>
+            <% if user_signed_in? && card.user.id == current_user.id %>
+              <%= link_to "", edit_card_path, class: "far fa-edit fa-lg" %>
+            <% end %>
           </div>
         </div>
       <% end %>

@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
   def index
     @cards = Card.includes(:user)
+    @card = Card.new
   end
 
   private

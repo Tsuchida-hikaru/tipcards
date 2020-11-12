@@ -1,2 +1,20 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<h1>トップページ</h1>
+<div class="container">
+  <div class="contents">
+    <% @cards.each do |card|%>
+      <% if card.publish_setting == true %>
+        <div class="content-post">
+          <div class="card-user">
+            <div class="card-user-icon"><%= card.user.image %></div>
+            <div class="card-user-name"><%= card.user.name %></div>
+            <div class="card-post-time"><%= card.updated_at %></div>
+          </div>
+          <div class="card">
+            <p class="card-title"><%= card.title %></p>
+            <p class="card-text"><%= card.text %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

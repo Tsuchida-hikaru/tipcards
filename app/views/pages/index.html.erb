@@ -28,6 +28,9 @@
               <%= link_to edit_card_path(card.id) do %>
                 <i class="far fa-edit"></i>
               <% end %>
+              <%= link_to card_path(card.id), method: :delete do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
             <% end %>
           </div>
         </div>

@@ -7,6 +7,15 @@ class CardsController < ApplicationController
   def edit
   end
 
+  def update
+  end
+
+  def destroy
+    card = Card.find(params[:id])
+    card.destroy
+    redirect_to root_path
+  end
+
   private
 
   def card_params

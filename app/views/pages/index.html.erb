@@ -4,7 +4,8 @@
     <%= form_with model: @card, url: cards_path, method: :post, local: true do |f| %>
       <%= f.text_field :title, placeholder: "カードのタイトル" %>
       <%= f.text_area :text, placeholder: "本文" %>
-      <%= f.label :image, for: "file-input", class: "far fa-images fa-lg" do %>
+      <%= f.label :image, "画像投稿", for: "file-input" do %>
+        <i class="far fa-images fa-lg"></i>
         <%= f.file_field :image, id: "file-input", style: "display: none;" %>
       <% end %>
       公開設定：<%= f.check_box :publish_setting, {checked: true}, "true", "false" %>
@@ -24,7 +25,9 @@
             <p class="card-title"><%= card.title %></p>
             <p class="card-text"><%= card.text %></p>
             <% if user_signed_in? && card.user.id == current_user.id %>
-              <%= link_to "編集", edit_card_path(card.id), class: "far fa-edit fa-lg" %>
+              <%= link_to edit_card_path(card.id) do %>
+                <i class="far fa-edit fa-lg"></i>
+              <% end %>
             <% end %>
           </div>
         </div>

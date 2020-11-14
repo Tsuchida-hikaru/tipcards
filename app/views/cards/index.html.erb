@@ -1,0 +1,45 @@
+<h1>トップページ</h1>
+<div class="container">
+  <div class="card-flash">
+    <p class="card-notice"><%= flash[:card_notice] %></p>
+    <p class="card-alert"><%= flash[:card_alert] %></p>
+  </div>
+  <div class="card-form">
+    <%= form_with model: @card, url: cards_path, method: :post, local: true do |f| %>
+      <%= render "layouts/error_messages", model: f.object %>
+      <%= f.text_field :title, placeholder: "カードのタイトル" %>
+      <%= f.text_area :text, placeholder: "本文" %>
+      <%= f.label :image, "画像投稿", for: "file-input" do %>
+        <i class="far fa-images"></i>
+        <%= f.file_field :image, id: "file-input", style: "display: none;" %>
+      <% end %>
+      公開設定：<%= f.check_box :publish_setting, {checked: true}, "true", "false" %>
+      <%= f.submit "投稿する"%>
+    <% end %>
+  </div>
+  <div class="card-contents">
+    <% @cards.each do |card|%>
+      <% if card.publish_setting == true || card.user == current_user %>
+        <div class="content-post">
+          <div class="card-user">
+            <div class="card-user-icon"><%= card.user.image %></div>
+            <div class="card-user-name"><%= card.user.name %></div>
+            <div class="card-post-time"><%= card.updated_at %></div>
+          </div>
+          <div class="card">
+            <p class="card-title"><%= card.title %></p>
+            <p class="card-text"><%= card.text %></p>
+            <% if user_signed_in? && card.user.id == current_user.id %>
+              <%= link_to edit_card_path(card.id) do %>
+                <i class="far fa-edit"></i>
+              <% end %>
+              <%= link_to card_path(card.id), method: :delete do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

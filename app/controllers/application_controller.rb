@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :publish_setting])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :publish_setting])
   end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to pages_url
+    end
+  end
 end

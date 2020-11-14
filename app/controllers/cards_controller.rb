@@ -3,7 +3,12 @@ class CardsController < ApplicationController
 
   def create
     card = Card.create(card_params)
-    redirect_to root_path if card.save
+    if card.save
+      redirect_to root_path, flash: { card_post: "カードを投稿しました" }
+    else
+      redirect_to root_path, flash: { card_post: "カード投稿に失敗しました" }
+    end
+
   end
 
   def edit
@@ -15,7 +20,10 @@ class CardsController < ApplicationController
   def destroy
     card = Card.find(params[:id])
     card.destroy
-    redirect_to root_path
+    if card.destroy
+      redirect_to root_path, flash: { card_delete: "カードを削除しました" }
+    else
+      redirect_to root_path, flash: { card_delete: "カードの削除に失敗しました" }
   end
 
   private

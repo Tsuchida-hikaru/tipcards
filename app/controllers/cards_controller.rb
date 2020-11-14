@@ -1,4 +1,6 @@
 class CardsController < ApplicationController
+  before_action :move_to_index, except: [:show]
+
   def create
     card = Card.create(card_params)
     redirect_to root_path if card.save

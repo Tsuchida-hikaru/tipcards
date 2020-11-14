@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :move_to_index
 
   def after_sign_in_path_for(resource)
     user_path(resource.id)
@@ -15,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def move_to_index
     unless user_signed_in?
-      redirect_to action: :index
+      redirect_to pages_url
     end
   end
 end

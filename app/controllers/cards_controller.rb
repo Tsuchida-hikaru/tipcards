@@ -47,7 +47,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:title, :text, :image, :publish_setting).merge(user_id: current_user.id)
+    params.require(:card).permit(:title, :text, :image, :publish_setting, images: []).merge(user_id: current_user.id)
   end
 
   def set_card

@@ -26,7 +26,7 @@ class CardsController < ApplicationController
     set_card
     @card.update(card_params)
     if @card.update(card_params)
-      redirect_to root_path, flash: { card_notice: "カードを編集しました" }
+      redirect_to action: :index, flash: { card_notice: "カードを編集しました" }
     else
       flash.now[:card_alert] = "カードの編集に失敗しました"
       render :edit
@@ -39,7 +39,8 @@ class CardsController < ApplicationController
     if @card.destroy
       redirect_to root_path, flash: { card_notice: "カードを削除しました" }
     else
-      redirect_to root_path, flash: { card_alert: "カードの削除に失敗しました" }
+      flash.now[:card_alert] = "カード削除に失敗しました"
+      render "cards/index"
     end
   end
 

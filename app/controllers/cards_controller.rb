@@ -3,7 +3,7 @@ class CardsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @cards = Card.includes(:user)
+    @cards = Card.includes(:user).order(updated_at: :DESC)
     @card = Card.new
   end
 
@@ -11,8 +11,7 @@ class CardsController < ApplicationController
     @cards = Card.includes(:user)
     @card = Card.create(card_params)
     if @card.save
-      flash.now[:card_notice] = "カードを投稿しました"
-      render action: :index
+      redirect_to action: :index, flash: { card_notice: "カードを投稿しました" }
     else
       flash.now[:card_alert] = "カード投稿に失敗しました"
       render "cards/index"
@@ -27,7 +26,7 @@ class CardsController < ApplicationController
     set_card
     @card.update(card_params)
     if @card.update(card_params)
-      redirect_to root_path, flash: { card: "カードを編集しました" }
+      redirect_to root_path, flash: { card_notice: "カードを編集しました" }
     else
       flash.now[:card_alert] = "カードの編集に失敗しました"
       render :edit

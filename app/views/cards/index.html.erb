@@ -4,6 +4,7 @@
     <p class="card-notice"><%= flash[:card_notice] %></p>
     <p class="card-alert"><%= flash[:card_alert] %></p>
   </div>
+  <!-- カード投稿部分 -->
   <div class="card-form">
     <%= form_with model: @card, url: cards_path, method: :post, local: true do |f| %>
       <%= render "layouts/error_messages", model: f.object %>
@@ -17,6 +18,8 @@
       <%= f.submit "投稿する"%>
     <% end %>
   </div>
+  <!-- /カード投稿部分 -->
+  <!-- カード一覧表示 -->
   <div class="card-contents">
     <% @cards.each do |card|%>
       <% if card.publish_setting == true || card.user == current_user %>
@@ -42,4 +45,5 @@
       <% end %>
     <% end %>
   </div>
+  <!-- /カード一覧表示 -->
 </div>

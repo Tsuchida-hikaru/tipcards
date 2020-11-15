@@ -1,12 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
-
   def show
-  end
-
-  private
-
-  def set_user
     @user = User.find(params[:id])
+    @my_cards = Card.includes(:user).where(user_id: current_user.id).order(updated_at: :DESC)
   end
 end

@@ -38,8 +38,17 @@
 
   <div class="field">
     <%= f.label :publish_setting %><br />
-    カードの公開デフォルト設定：<%= f.radio_button :publish_setting, "true", checked: true %>公開<%= f.radio_button :publish_setting, "false" %>非公開
+    カード投稿の公開設定：<%= f.radio_button :publish_setting, "true", checked: true %>公開<%= f.radio_button :publish_setting, "false" %>非公開
   </div>
+
+  <!-- アイコン画像投稿機能
+  <div class="field">
+    <%# f.label :image, "画像投稿", for: "file-input" do %> %>
+      <i class="far fa-images"></i>
+      <%# f.file_field :image, id: "file-input" %>
+    <%# end %>
+  </div>
+  -->
 
   <div class="actions">
     <%= f.submit t('.update') %>

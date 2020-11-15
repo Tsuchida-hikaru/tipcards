@@ -7,3 +7,27 @@
 <% if user_signed_in? && @user == current_user %>
   <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %>
 <% end %>
+
+  <!-- カード一覧表示 -->
+  <div class="card-contents">
+    <% @my_cards.each do |card|%>
+      <div class="content-post">
+        <div class="card-user">
+          <div class="card-user-icon"><%= card.user.image %></div>
+          <div class="card-user-name"><%= card.user.name %></div>
+          <div class="card-post-time"><%= card.updated_at %></div>
+        </div>
+        <div class="card">
+          <p class="card-title"><%= card.title %></p>
+          <p class="card-text"><%= card.text %></p>
+          <%= link_to edit_card_path(card.id) do %>
+            <i class="far fa-edit"></i>
+          <% end %>
+          <%= link_to card_path(card.id), method: :delete do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <!-- /カード一覧表示 -->

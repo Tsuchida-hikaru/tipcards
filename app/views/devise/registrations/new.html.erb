@@ -28,7 +28,7 @@
 
     <div class="field">
     <%= f.label :publish_setting %><br />
-    カードの公開デフォルト設定：<%= f.radio_button :publish_setting, "true", checked: true %>公開<%= f.radio_button :publish_setting, "false" %>非公開
+    カードの公開デフォルト設定：公開<%= f.radio_button :publish_setting, "true", checked: true %><%= f.radio_button :publish_setting, "false" %>非公開
   </div>
 
   <div class="actions">

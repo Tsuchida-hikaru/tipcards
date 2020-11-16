@@ -6,16 +6,19 @@
     <div class="card-flash">
       <p class="card-alert"><%= flash[:card_alert] %></p>
     </div>
-    <%= form_with model: @card, url: card_path, method: :patch, local: true do |f| %>
+    <%= form_with model: @card, url: card_path, method: :put, local: true do |f| %>
       <%= render "layouts/error_messages", model: f.object %>
       <%= f.text_field :title, placeholder: "カードのタイトル" %>
       <%= f.text_area :text, placeholder: "本文" %>
-      <% if card.images.attached? %>
-        <% if card.images.attached? %>
-          <% card.images.each do |image| %>
-            <p class="card-images"><%= image_tag image.variant(strip: true, resize: "500x500>", quality: "85", interlace: "JPEG", colorspace: "sRGB").processed %><br></p>
-          <% end %>
+      <p>※削除したい投稿画像をクリックして選択してください</p>
+      <% if @card.images.attached? %>
+        <% @card.images.each do |image| %>
+          <%= f.check_box :delete_images, {multiple: true}, image.id, false %>
+          <%= f.label :"delete_images_#{image.id}" do %>
+            <%= image_tag image.variant(strip: true, resize: "300x300>", quality: "85", interlace: "JPEG", colorspace: "sRGB").processed %>
+          <% end %><br>
         <% end %>
+      <% end %>
       <%= f.label :images, "画像投稿", for: "file-input" do %>
         <i class="far fa-images"></i>
         <%= f.file_field :images, id: "file-input", multiple: true, style: "display: none;" %>

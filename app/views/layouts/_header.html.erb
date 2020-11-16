@@ -1,0 +1,13 @@
+<header>
+  <nav>
+    <% if user_signed_in? %>
+      <strong><%= current_user.name %></strong>
+      <%= link_to 'マイページ', user_path(current_user) %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to '新規登録', new_user_registration_path %>
+      <%= link_to 'ログイン', new_user_session_path %>
+    <% end %>
+    <%= link_to 'トップページ', root_path %>
+  </nav>
+</header>

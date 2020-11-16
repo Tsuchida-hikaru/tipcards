@@ -63,3 +63,4 @@ gem 'devise-i18n-views'
 gem 'mini_magick'
 gem 'image_processing'
 gem 'font-awesome-sass'
+gem 'aws-sdk-s3', require: false

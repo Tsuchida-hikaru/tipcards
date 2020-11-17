@@ -10,7 +10,7 @@
         </div>
         <div class="card">
           <p class="card-title"><%= card.title %></p>
-          <p class="card-text"><%= card.text %></p>
+          <p class="card-text"><%= simple_format(h(card.text)) %></p>
           <% if card.images.attached? %>
             <% card.images.each do |image| %>
               <p class="card-images"><%= image_tag image.variant(strip: true, resize: "500x500>", quality: "85", interlace: "JPEG", colorspace: "sRGB").processed %><br></p>

@@ -1,31 +1,33 @@
-<div class="card-contents">
-  <% @cards.each do |card|%>
-    <% if card.publish_setting == true || card.user == current_user %>
-      <div class="content-post">
-        <div class="card-user">
-          <div class="card-user-name">
-            <span class="card-user-name"><%= card.user.name %></span>
-            <span class="card-post-time"><%= card.updated_at.to_s(:datetime_jp) %></span>
-          </div>
-        </div>
-        <div class="card">
-          <p class="card-title"><%= card.title %></p>
-          <p class="card-text"><%= simple_format(h(card.text)) %></p>
-          <% if card.images.attached? %>
-            <% card.images.each do |image| %>
-              <p class="card-images"><%= image_tag image.variant(strip: true, resize: "500x500>", quality: "85", interlace: "JPEG", colorspace: "sRGB").processed %><br></p>
-            <% end %>
-          <% end %>
-          <% if user_signed_in? && card.user.id == current_user.id %>
-            <%= link_to edit_card_path(card.id) do %>
-              <i class="fas fa-edit"></i>
-            <% end %>
-            <%= link_to card_path(card.id), method: :delete, data: { confirm: "削除してよろしいですか？" } do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-          <% end %>
+<% @cards.each do |card|%>
+  <% if card.publish_setting == true || card.user == current_user %>
+    <div class="contents-card">
+      <div class="card-user">
+        <div class="card-user-name">
+          <span class="card-user-name"><%= card.user.name %></span>
+          <span class="card-post-time"><%= card.updated_at.to_s(:datetime_jp) %></span>
         </div>
       </div>
-    <% end %>
+
+      <div class="card">
+        <p class="card-title"><%= card.title %></p>
+        <p class="card-text"><%= simple_format(h(card.text)) %></p>
+      </div>
+
+      <div class="card-items">
+        <% if card.images.attached? %>
+          <% card.images.each do |image| %>
+            <p class="card-images"><%= image_tag image.variant(strip: true, resize: "500x500>", quality: "85", interlace: "JPEG", colorspace: "sRGB").processed %><br></p>
+          <% end %>
+        <% end %>
+        <% if user_signed_in? && card.user.id == current_user.id %>
+          <%= link_to edit_card_path(card.id) do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+          <%= link_to card_path(card.id), method: :delete, data: { confirm: "削除してよろしいですか？" } do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-</div>
+<% end %>

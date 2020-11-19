@@ -81,7 +81,7 @@ $color_border: rgb(230, 236, 240);
 }
 
 /* カード一覧 */
-.contents-card {
+.card-container {
   margin-top: 1.25rem;
   background-color: rgb(255, 255, 255);
   border-top: solid 4px $color_card;
@@ -97,14 +97,17 @@ $color_border: rgb(230, 236, 240);
 
   .card-user {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     font-size: 0.75rem;
     color: $color_text_off;
   }
 
-  .card {
+  .card-content {
 
     .card-title {
+      display: flex;
+      align-items: center;
+      height: 2rem;
       font-size: 1rem;
       font-weight: bold;
       color: rgb(23, 44, 60);
@@ -116,6 +119,7 @@ $color_border: rgb(230, 236, 240);
     }
 
     .card-images {
+      text-align: center;
 
       .card-image {
           img {

@@ -1,14 +1,12 @@
 <% @cards.each do |card|%>
   <% if card.publish_setting == true || card.user == current_user %>
-    <div class="contents-card">
+    <div class="card-container">
       <div class="card-user">
-        <div class="card-user-name">
-          <span class="card-user-name"><%= card.user.name %></span>
-          <span class="card-post-time"><%= card.updated_at.to_s(:datetime_jp) %></span>
-        </div>
+        <span class="card-user-name"><%= card.user.name %></span>
+        <span class="card-post-time"><%= card.updated_at.to_s(:datetime_jp) %></span>
       </div>
 
-      <div class="card">
+      <div class="card-content">
         <div class="card-title"><%= card.title %></div>
         <div class="card-text"><%= simple_format(h(card.text)) %></div>
         <div class="card-images">
@@ -19,6 +17,7 @@
           <% end %>
         </div>
       </div>
+
       <% if user_signed_in? && card.user.id == current_user.id %>
         <div class="card-items">
           <%= link_to edit_card_path(card.id) do %>

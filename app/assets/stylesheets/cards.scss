@@ -1,3 +1,68 @@
-// Place all the styles related to the cards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$color_card: rgb(255, 255, 255);
+$color_logo: rgb(68, 149, 227);
+
+/* カード投稿フォーム */
+.form-card{
+   display: flex;
+   flex-direction: column;
+
+  > * {
+    padding: 5px 15px;
+  }
+
+  > *:not(:last-child) {
+    border-bottom: 1px solid rgb(230, 236, 240);
+  }
+
+  #card_title {}
+
+  #card_text {
+    height: 6.5rem;
+  }
+
+  .form-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .form-items-wrapper {
+      display: flex;
+
+      label {
+        text-decoration: none;
+        color: $color_logo;
+        cursor: pointer;
+        &:hover {
+          color: rgb(58, 96, 133);
+        }
+
+        input[type=checkbox] {
+          display: none;
+        }
+        input[type=checkbox]:not(:checked) + label::after {
+          content: "OFF";
+          color: rgb(117, 117, 117);
+        }
+        input[type=checkbox]:checked + label::after {
+          content: "ON";
+          color: $color_logo;
+        }
+      }
+      > label:last-child {
+        margin-left: 1rem;
+      }
+    }
+
+    input[type=submit] {
+      padding: 5px 10px;
+      border-radius: 6px;
+      background-color: $color_logo;
+      color: $color_card;
+      font-weight: bold;
+      &:hover {
+        background-color: rgb(58, 131, 199);
+      }
+    }
+  }
+}
+

@@ -20,7 +20,7 @@
         <% end %>
       <% end %>
       <%= f.label :images, "画像投稿", for: "file-input" do %>
-        <i class="far fa-images"></i>
+        <i class="fas fa-images"></i>
         <%= f.file_field :images, id: "file-input", multiple: true, style: "display: none;" %>
       <% end %>
       公開設定：<%= f.check_box :publish_setting, {checked: true}, "true", "false" %>

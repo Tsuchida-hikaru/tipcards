@@ -14,8 +14,10 @@
     <!-- ログインメッセージ -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-  
-    <%= yield %>
+
+    <div class="main-wrapper">
+      <%= yield %>
+    </div>
 
     <%= render partial: 'layouts/footer'%>
   </body>

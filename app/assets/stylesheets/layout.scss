@@ -47,6 +47,9 @@ header {
         &:hover {
           border-bottom: $color_logo solid 3px;
         }
+        &:not(:first-child) > a > svg {
+          margin-right: 5px
+        }
 
         a {
           display: flex;
@@ -56,9 +59,6 @@ header {
           color: $color_logo;
           text-decoration: none;
         }
-      }
-      .hover-underline:not(:first-child) > a > svg {
-        margin-right: 5px
       }
     }
   }

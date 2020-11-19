@@ -9,25 +9,26 @@
       </div>
 
       <div class="card">
-        <p class="card-title"><%= card.title %></p>
-        <p class="card-text"><%= simple_format(h(card.text)) %></p>
-      </div>
-
-      <div class="card-items">
-        <% if card.images.attached? %>
-          <% card.images.each do |image| %>
-            <p class="card-images"><%= image_tag image.variant(strip: true, resize: "500x500>", quality: "85", interlace: "JPEG", colorspace: "sRGB").processed %><br></p>
+        <div class="card-title"><%= card.title %></div>
+        <div class="card-text"><%= simple_format(h(card.text)) %></div>
+        <div class="card-images">
+          <% if card.images.attached? %>
+            <% card.images.each do |image| %>
+              <p class="card-image"><%= image_tag image.variant(strip: true, resize: "500x500>", quality: "85", interlace: "JPEG", colorspace: "sRGB").processed %><br></p>
+            <% end %>
           <% end %>
-        <% end %>
-        <% if user_signed_in? && card.user.id == current_user.id %>
+        </div>
+      </div>
+      <% if user_signed_in? && card.user.id == current_user.id %>
+        <div class="card-items">
           <%= link_to edit_card_path(card.id) do %>
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-edit"></i>：編集
           <% end %>
           <%= link_to card_path(card.id), method: :delete, data: { confirm: "削除してよろしいですか？" } do %>
-            <i class="fas fa-trash-alt"></i>
+            <i class="fas fa-trash-alt"></i>：削除
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   <% end %>
 <% end %>

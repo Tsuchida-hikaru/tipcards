@@ -11,10 +11,10 @@ class CardsController < ApplicationController
     @cards = Card.includes(:user)
     @card = Card.create(card_params)
     if @card.save
-      redirect_to action: :index, flash: { card_notice: "カードを投稿しました" }
+      redirect_to cards_path, flash: { notice: "カードを投稿しました" }
     else
-      flash.now[:card_alert] = "カード投稿に失敗しました"
-      render "cards/index"
+      flash.now[:alert] = "カード投稿に失敗しました"
+      render :index
     end
   end
 
@@ -32,9 +32,10 @@ class CardsController < ApplicationController
     end
     @card.update(card_params)
     if @card.update(card_params)
-      redirect_to action: :index, flash: { card_notice: "カードを編集しました" }
+      flash[:notice] = "カードを編集しました"
+      redirect_to action: :index, flash: { notice: "カードを編集しました" }
     else
-      flash.now[:card_alert] = "カードの編集に失敗しました"
+      flash.now[:alert] = "カードの編集に失敗しました"
       render :edit
     end
   end
@@ -43,9 +44,9 @@ class CardsController < ApplicationController
     set_card
     @card.destroy
     if @card.destroy
-      redirect_to root_path, flash: { card_notice: "カードを削除しました" }
+      redirect_to root_path, flash: { notice: "カードを削除しました" }
     else
-      flash.now[:card_alert] = "カード削除に失敗しました"
+      flash.now[:alert] = "カード削除に失敗しました"
       render "cards/index"
     end
   end

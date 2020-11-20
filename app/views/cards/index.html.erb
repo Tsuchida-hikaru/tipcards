@@ -2,12 +2,7 @@
   <div class="h1-page-top">
     <h1>ホーム</h1>
   </div>
-  <% if flash[:card_notice].present? %>
-    <div class="card-flash">
-      <%= flash[:card_notice] %>
-      <%= flash[:card_alert] %>
-    </div>
-  <% end %>
+  
   <!-- カード投稿部分 -->
   <div class="contents">
     <%= form_with model: @card, url: cards_path, method: :post, class: "form-card", local: true do |f| %>
@@ -33,9 +28,10 @@
       </div>
     <% end %>
   </div>
-  <!-- /カード投稿部分 -->
+
+  <!-- カード一覧表示 -->
   <div class="contents">
-    <%= render partial: 'card_list' %><!-- カード一覧表示 -->
+    <%= render partial: 'card_list' %>
   </div>
 
 </div>

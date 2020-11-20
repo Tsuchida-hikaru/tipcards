@@ -3,9 +3,6 @@
   <!-- カード編集フォーム -->
   <div class="card-form">
     <h2>カードを編集する</h2>
-    <div class="card-flash">
-      <p class="card-alert"><%= flash[:card_alert] %></p>
-    </div>
     <%= form_with model: @card, url: card_path, method: :put, local: true do |f| %>
       <%= render "layouts/error_messages", model: f.object %>
       <%= f.text_field :title, placeholder: "カードのタイトル" %>

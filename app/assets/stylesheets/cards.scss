@@ -1,3 +1,4 @@
+$color_alert: rgb(218, 32, 50);
 $color_card: rgb(73, 183, 197);
 $color_logo: rgb(68, 149, 227);
 $color_text_off: rgb(117, 117, 117);
@@ -9,6 +10,19 @@ $color_border: rgb(230, 236, 240);
 @mixin box-shadow() {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
 }
+
+/* カード投稿メッセージ */
+.card-flash {
+  font-size: 1rem;
+
+  .card-notice {}
+
+  .card-alert {
+    color: $color_alert
+  }
+}
+
+
 /* カード投稿フォーム */
 .form-card{
   display: flex;
@@ -21,17 +35,33 @@ $color_border: rgb(230, 236, 240);
 
   > * {
     padding: 5px 15px;
+    text-decoration: none;
     &:not(:last-child) {
       @include border_dashed();
     }
   }
 
+  .alert-warning {
+    color: $color_alert;
+
+    li {
+      font-size: 0.75rem;
+      list-style: none;
+    }
+  }
+
   #card_title {
     height: 2rem;
+    width: 100%;
+    max-width: 600px;
+    min-width: 300px;
   }
 
   #card_text {
     height: 6.5rem;
+    width: 100%;
+    max-width: 600px;
+    min-width: 300px;
   }
 
   .form-items {

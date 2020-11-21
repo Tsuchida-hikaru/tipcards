@@ -11,18 +11,6 @@ $color_border: rgb(230, 236, 240);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* カード投稿メッセージ */
-.card-flash {
-  font-size: 1rem;
-
-  .card-notice {}
-
-  .card-alert {
-    color: $color_alert
-  }
-}
-
-
 /* カード投稿フォーム */
 .form-card{
   display: flex;

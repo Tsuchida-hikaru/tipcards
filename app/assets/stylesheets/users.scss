@@ -18,8 +18,7 @@ form {
   flex-direction: column;
   margin-top: 1.25rem;
   background-color: rgb(255, 255, 255);
-  border-top: solid 4px rgb(68, 149, 227);
-  border-radius: 4px 20px;
+  border-radius: 4px;
   @include box-shadow();
 
 }

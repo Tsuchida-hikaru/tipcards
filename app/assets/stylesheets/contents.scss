@@ -6,16 +6,14 @@
 
   .contents {
     width: 100%;
-    max-width: 600px;
-    min-width: 300px;
     &:last-child {
       margin-bottom: 2rem;
     }
   }
 }
 
- .h1-page-top {
-   margin-top: 1rem;
+.h1-page-top {
+  margin-top: 1rem;
 
     h1 {
       font-size: 1.5rem;

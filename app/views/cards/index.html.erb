@@ -1,6 +1,6 @@
 <div class="container">
   <div class="h1-page-top">
-    <h1>ホーム</h1>
+    <h1>ホーム&e05b;</h1>
   </div>
   
   <!-- カード投稿部分 -->
@@ -9,14 +9,14 @@
       <%= render partial: "layouts/error_messages", locals: { model: f.object } %>
       <%= f.text_field :title, placeholder: "カードのタイトル（３０文字以内）" %>
       <%= f.text_area :text, placeholder: "本文（３００文字以内）" %>
-      <div class="form-items">
-        <div class="form-items-wrapper">
+      <div class="form-items-wrapper">
+        <div class="form-items">
           <%= f.label :images, "画像投稿" do %>
             <i class="fas fa-images"></i>：画像投稿
             <%= f.file_field :images, id: "file-input", multiple: true, style: "display: none;" %>
           <% end %>
           <%= f.label :publish_setting, "公開設定", class: "checked-publish" do %>
-            <i class="fas fa-globe"></i>：公開設定
+            <i class="fas fa-globe"></i>：公開する
             <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
             <%= f.label :publish_setting do %>
             <% end %>

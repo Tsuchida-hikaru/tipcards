@@ -18,7 +18,7 @@ $color_border: rgb(230, 236, 240);
   margin-top: 1.25rem;
   background-color: rgb(255, 255, 255);
   border-top: solid 4px rgb(68, 149, 227);
-  border-radius: 4px 20px;
+  border-radius: 4px;
   @include box-shadow();
 
   > * {
@@ -48,12 +48,12 @@ $color_border: rgb(230, 236, 240);
     width: 100%;
   }
 
-  .form-items {
+  .form-items-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    .form-items-wrapper {
+    .form-items {
       display: flex;
 
       label {
@@ -63,19 +63,23 @@ $color_border: rgb(230, 236, 240);
         &:hover {
           color: rgb(58, 96, 133);
         }
-        &:last-child {
+        &.checked-publish {
           margin-left: 1rem;
         }
 
         input[type=checkbox] {
           display: none;
-          &:not(:checked) + label::after {
-            content: "OFF";
-            color: $color_text_off
+          & + label::after, &:checked +label::after {
+            display: inline-block;
+            font-family: "Font Awesome 5 Free";
+          }
+          & + label::after {
+            content: "\f0c8";
+            font-weight: 400;
           }
           &:checked + label::after {
-            content: "ON";
-            color: $color_logo;
+            content: "\f14a";
+            font-weight: 900;
           }
         }
       }
@@ -99,7 +103,7 @@ $color_border: rgb(230, 236, 240);
   margin-top: 1.25rem;
   background-color: rgb(255, 255, 255);
   border-top: solid 4px $color_card;
-  border-radius: 4px 20px;
+  border-radius: 4px;
   @include box-shadow();
 
   > * {

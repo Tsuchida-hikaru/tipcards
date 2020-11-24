@@ -73,3 +73,5 @@ gem 'mini_magick'
 gem 'image_processing'
 gem 'font-awesome-sass'
 gem 'aws-sdk-s3', require: false
+gem 'bootstrap', '~> 5.0.0alpha3'
+gem 'jquery-rails'

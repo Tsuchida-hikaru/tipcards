@@ -11,7 +11,7 @@ $color_border: rgb(230, 236, 240);
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
-/* カード投稿フォーム */
+/* カード投稿・編集フォーム */
 .form-card{
   display: flex;
   flex-direction: column;
@@ -38,14 +38,21 @@ $color_border: rgb(230, 236, 240);
     }
   }
 
+  #card_title, #card_text {
+    width: 100%;
+    &:focus {
+      outline: none;
+      border: 1px dashed #ccccee;
+      background-color: #EEEEFF;
+    }
+  }
+
   #card_title {
     height: 2rem;
-    width: 100%;
   }
 
   #card_text {
     height: 6.5rem;
-    width: 100%;
   }
 
   .form-items-wrapper {
@@ -94,6 +101,24 @@ $color_border: rgb(230, 236, 240);
       &:hover {
         background-color: rgb(58, 131, 199);
       }
+    }
+  }
+
+  .images-container {
+    display: flex;
+    flex-direction: column;
+    & > * {
+      margin-bottom: 0.5rem;
+    }
+
+    .annotation {
+      font-size: 0.75rem;
+      color: #888888;
+    }
+
+    div label {
+      display: inline-block;
+      border: 1px dashed #ccccee;
     }
   }
 }

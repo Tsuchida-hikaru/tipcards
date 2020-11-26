@@ -4,12 +4,10 @@
   flex-direction: column;
   margin: auto;
 
-  .contents {
-    width: 100%;
-    &:last-child {
+    .contents {
+      width: 100%;
       margin-bottom: 2rem;
     }
-  }
 }
 
 h1 {

@@ -3,6 +3,7 @@ $color_card: rgb(73, 183, 197);
 $color_logo: rgb(68, 149, 227);
 $color_text_off: rgb(117, 117, 117);
 $color_border: rgb(230, 236, 240);
+$color_border_dashed: #ccccee;
 
 @mixin border_dashed() {
   border-bottom: 1px dashed $color_border;
@@ -42,7 +43,7 @@ $color_border: rgb(230, 236, 240);
     width: 100%;
     &:focus {
       outline: none;
-      border: 1px dashed #ccccee;
+      border: 1px dashed $color_border_dashed;
       background-color: #EEEEFF;
     }
   }
@@ -118,7 +119,7 @@ $color_border: rgb(230, 236, 240);
 
     div label {
       display: inline-block;
-      border: 1px dashed #ccccee;
+      border: 1px dashed $color_border_dashed;
     }
   }
 }

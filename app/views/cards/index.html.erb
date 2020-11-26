@@ -1,8 +1,5 @@
 <div class="container">
-  <div class="h1-page-top">
-    <h1>ホーム&e05b;</h1>
-  </div>
-  
+  <h1>ホーム</h1>
   <!-- カード投稿部分 -->
   <div class="contents">
     <%= form_with model: @card, url: cards_path, method: :post, class: "form-card", local: true do |f| %>
@@ -33,5 +30,8 @@
   <div class="contents">
     <%= render partial: 'card_list' %>
   </div>
+
+  <!-- ページネーション -->
+  <%= paginate @cards %>
 
 </div>

@@ -1,66 +1,76 @@
-.pager {
-  margin-bottom: 1rem;
+$breakpoint-up: 768px;
+$breakpoint-down: 767px;
 
-  .pagination {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 0.25rem 0;
-    margin: auto;
 
-    span {
-      display: table-cell;
-      width: 50px;
-      height: 50px;
-      text-align: center;
-      vertical-align: middle;
-      border-radius: 2px;
-      color: #4495e3;
-      -webkit-transition: background-color 0.3s ease;
-      -moz-transition: background-color 0.3s ease;
-      -o-transition: background-color 0.3s ease;
-      transition: background-color  0.3s ease;
-      &:hover, &:active {
-        background: #4495e3;
-      }
-      &:hover, &:hover > a, &:active, &:active > a {
-        color: #ffffff;
-      }
-      &.current {
-        border: 1px solid #ccccee;
-      }
+@mixin max-screen($break-point) {
+  @media screen and (max-width: $break-point) {
+    .pager {
+      margin-bottom: 1rem;
 
-      a {
-        text-decoration: none;
-        color: #4495e3;
+      .pagination {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 0.25rem 0;
+        margin: auto;
+
+        span {
+          display: table-cell;
+          width: 50px;
+          height: 50px;
+          text-align: center;
+          vertical-align: middle;
+          border-radius: 2px;
+          color: #4495e3;
+          -webkit-transition: background-color 0.3s ease;
+          -moz-transition: background-color 0.3s ease;
+          -o-transition: background-color 0.3s ease;
+          transition: background-color  0.3s ease;
+          &:hover, &:active {
+            background: #4495e3;
+          }
+          &:hover, &:hover > a, &:active, &:active > a {
+            color: #ffffff;
+          }
+          &.current {
+            border: 1px solid #ccccee;
+          }
+
+          a {
+            text-decoration: none;
+            color: #4495e3;
+          }
+        }
       }
     }
   }
 }
 
-@media only screen and (max-width: 767px){
-  .pager .pagination li{
-    display: none;
-  }
+@mixin min-screen($break-point) {
+  @media screen and (min-width: $break-point) {
+    .pager .pagination li{
+      display: none;
+    }
 
-  .pager .pagination li.pre,
-  .pager .pagination li.next{
-    display: inline-block;
-    width: 40%;
-    height: 50px;
-    text-align: center;
-  }
+    .pager .pagination li.pre,
+    .pager .pagination li.next{
+      display: inline-block;
+      width: 40%;
+      height: 50px;
+      text-align: center;
+    }
 
-  .pager .pagination li.pre a,
-  .pager .pagination li.next a{
-    width: 100%;
-    text-align: center;
-  }
+    .pager .pagination li.pre a,
+    .pager .pagination li.next a{
+      width: 100%;
+      text-align: center;
+    }
 
-  .pager .pagination li.pre span::after{
-    content: "　前の10件へ";
-  }
+    .pager .pagination li.pre span::after{
+      content: "　前の10件へ";
+    }
 
-  .pager .pagination li.next span::before{
-    content: "次の10件へ　";
+    .pager .pagination li.next span::before{
+      content: "次の10件へ　";
+    }
   }
 }

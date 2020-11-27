@@ -1,5 +1,5 @@
 $color_alert: rgb(218, 32, 50);
-$color_card: rgb(73, 183, 197);
+$color_card: rgb(68, 149, 227);
 $color_logo: rgb(68, 149, 227);
 $color_text_off: rgb(117, 117, 117);
 $color_border: rgb(230, 236, 240);
@@ -18,7 +18,6 @@ $color_border_dashed: #ccccee;
   flex-direction: column;
   margin-top: 1.25rem;
   background-color: rgb(255, 255, 255);
-  border-top: solid 4px rgb(68, 149, 227);
   border-radius: 4px;
   @include box-shadow();
 
@@ -128,7 +127,7 @@ $color_border_dashed: #ccccee;
 .card-container {
   margin-top: 1.25rem;
   background-color: rgb(255, 255, 255);
-  border-top: solid 4px $color_card;
+  border-top: solid 4px rgb(68, 149, 227);
   border-radius: 4px;
   @include box-shadow();
 
@@ -166,6 +165,8 @@ $color_border_dashed: #ccccee;
       text-align: center;
 
       .card-image {
+        margin-bottom: 1rem;
+
           img {
           width: 100%;
           max-width: 500px;

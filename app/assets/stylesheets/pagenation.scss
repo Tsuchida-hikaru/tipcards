@@ -1,76 +1,103 @@
 $breakpoint-up: 768px;
 $breakpoint-down: 767px;
 
-
 @mixin max-screen($break-point) {
   @media screen and (max-width: $break-point) {
-    .pager {
-      margin-bottom: 1rem;
+    @content;
+  }
+}
 
-      .pagination {
-        display: table;
-        border-collapse: separate;
-        border-spacing: 0.25rem 0;
-        margin: auto;
+@mixin min-screen($break-point) {
+  @media screen and (min-width: $break-point) {
+    @content;
+  }
+}
 
-        span {
-          display: table-cell;
-          width: 50px;
-          height: 50px;
-          text-align: center;
-          vertical-align: middle;
-          border-radius: 2px;
+
+.pager {
+  margin-bottom: 1rem;
+
+  .pagination {
+    display: table;
+    border-collapse: separate;
+    margin: auto;
+    @include max-screen($breakpoint-down) {
+      border-spacing: 1rem 0;
+    }
+    @include min-screen($breakpoint-up) {
+      border-spacing: 0.25rem 0;
+    }
+
+    span {
+      display: table-cell;
+      @include max-screen($breakpoint-down) {
+        width: 10vh;
+        background-color: #4495e3;
+        border-radius: 10%;
+        color: #ffffff;
+        font-weight: bold;
+      }
+      @include min-screen($breakpoint-up) {
+        width: 50px;
+        border-radius: 2px;
+        color: #4495e3;
+      }
+      height: 50px;
+      text-align: center;
+      vertical-align: middle;
+      -webkit-transition: background-color 0.3s ease;
+      -moz-transition: background-color 0.3s ease;
+      -o-transition: background-color 0.3s ease;
+      transition: background-color  0.3s ease;
+      &:hover {
+        background-color: #4495e3;
+      }
+      &:active {
+        background-color: #3a6085;
+      }
+      &:hover, &:hover > a, &:active, &:active > a {
+        color: #ffffff;
+      }
+      &.current {
+        border: 1px solid #ccccee;
+      }
+
+      a {
+        text-decoration: none;
+        @include max-screen($breakpoint-down) {
+          color: #ffffff;
+          font-weight: bold;
+        }
+        @include min-screen($breakpoint-up) {
           color: #4495e3;
-          -webkit-transition: background-color 0.3s ease;
-          -moz-transition: background-color 0.3s ease;
-          -o-transition: background-color 0.3s ease;
-          transition: background-color  0.3s ease;
-          &:hover, &:active {
-            background: #4495e3;
-          }
-          &:hover, &:hover > a, &:active, &:active > a {
-            color: #ffffff;
-          }
-          &.current {
-            border: 1px solid #ccccee;
-          }
-
-          a {
-            text-decoration: none;
-            color: #4495e3;
-          }
         }
       }
     }
   }
 }
 
-@mixin min-screen($break-point) {
-  @media screen and (min-width: $break-point) {
-    .pager .pagination li{
-      display: none;
-    }
+.pager .pagination li{
+  display: none;
+}
 
-    .pager .pagination li.pre,
-    .pager .pagination li.next{
-      display: inline-block;
-      width: 40%;
-      height: 50px;
-      text-align: center;
-    }
+.pager .pagination li.pre,
+.pager .pagination li.next{
+  display: inline-block;
+  width: 40%;
+  height: 50px;
+  text-align: center;
+}
 
-    .pager .pagination li.pre a,
-    .pager .pagination li.next a{
-      width: 100%;
-      text-align: center;
-    }
+.pager .pagination li.pre a,
+.pager .pagination li.next a{
+  width: 100%;
+  text-align: center;
+}
 
-    .pager .pagination li.pre span::after{
-      content: "　前の10件へ";
-    }
+.pager .pagination li.pre span::after{
+  content: "　前の10件へ";
+}
 
-    .pager .pagination li.next span::before{
-      content: "次の10件へ　";
-    }
-  }
+.pager .pagination li.next span::before{
+  content: "次の10件へ　";
 }

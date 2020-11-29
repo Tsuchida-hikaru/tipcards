@@ -4,7 +4,7 @@ class CardsController < ApplicationController
 
   def index
     @cards = Card.includes(:user).order(updated_at: :DESC)
-    @cards = Card.page(params[:page]).per(4)
+    @cards = Card.page(params[:page]).per(3)
     @card = Card.new
   end
 

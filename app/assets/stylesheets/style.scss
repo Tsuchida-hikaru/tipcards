@@ -1,15 +1,14 @@
-$color_main: rgb(245, 245, 245);
-$color_header: rgb(255, 255, 255);
-$color_logo: rgb(68, 149, 227);
-$color_alert: rgb(218, 32, 50);
-$color_card: rgb(68, 149, 227);
-$color_logo: rgb(68, 149, 227);
-$color_text_off: rgb(117, 117, 117);
-$color_border: rgb(230, 236, 240);
-$color_border_dashed: #ccccee;
-
 $breakpoint-up: 768px;
 $breakpoint-down: 767px;
+$color: (
+  main: #f5f5f5,
+  white: #ffffff,
+  logo: #4495e3,
+  alert: #d92033,
+  text_off: #757575,
+  border: #e6ecf0,
+  border_dashed: #ccccee,
+)!default;
 
 @mixin max-screen($break-point) {
   @media screen and (max-width: $break-point) {
@@ -22,7 +21,7 @@ $breakpoint-down: 767px;
   }
 }
 @mixin border_dashed() {
-  border-bottom: 1px dashed $color_border;
+  border-bottom: 1px dashed #{map-get($color, border)};
 }
 @mixin box-shadow() {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
@@ -30,7 +29,7 @@ $breakpoint-down: 767px;
 
 /* ボディー */
 body {
-  background-color: $color_main;
+  background-color: #{map-get($color, main)};
 }
 
 /* ヘッダー */
@@ -70,9 +69,9 @@ header {
 
       .hover-underline {
         height: 100%;
-        border-bottom: $color_header solid 3px;
+        border-bottom: #{map-get($color, white)} solid 3px;
         &:hover {
-          border-bottom: $color_logo solid 3px;
+          border-bottom: #{map-get($color, logo)} solid 3px;
         }
         &:not(:first-child) > a > svg {
           margin-right: 5px
@@ -83,7 +82,7 @@ header {
           align-items: center;
           height: 100%;
           padding: 0 10px;
-          color: $color_logo;
+          color: #{map-get($color, logo)};
           text-decoration: none;
         }
       }
@@ -102,7 +101,7 @@ footer {
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 
   p {
-    color: $color_logo;
+    color: #{map-get($color, logo)};
   }
 }
 
@@ -180,7 +179,7 @@ h1 {
   }
 
   .alert-warning {
-    color: $color_alert;
+    color: #{map-get($color, alert)};
 
     li {
       font-size: 0.75rem;
@@ -192,7 +191,7 @@ h1 {
     width: 100%;
     &:focus {
       outline: none;
-      border: 1px dashed $color_border_dashed;
+      border: 1px dashed #{map-get($color, border_dashed)};
       background-color: #EEEEFF;
     }
   }
@@ -215,7 +214,7 @@ h1 {
 
       label {
         text-decoration: none;
-        color: $color_logo;
+        color: #{map-get($color, logo)};
         cursor: pointer;
         &:hover {
           color: #3a6085;
@@ -245,7 +244,7 @@ h1 {
     input[type=submit] {
       padding: 5px 10px;
       border-radius: 6px;
-      background-color: $color_logo;
+      background-color: #{map-get($color, logo)};
       color: rgb(255, 255, 255);
       font-weight: bold;
       &:hover {
@@ -268,7 +267,7 @@ h1 {
 
     div label {
       display: inline-block;
-      border: 1px dashed $color_border_dashed;
+      border: 1px dashed #{map-get($color, border_dashed)};
     }
   }
 }
@@ -285,14 +284,14 @@ h1 {
     padding: 5px 15px;
     &:not(:last-child) {
       @include border_dashed();
-    };
+    }
   }
 
   .card-user {
     display: flex;
     justify-content: space-between;
     font-size: 0.75rem;
-    color: $color_text_off;
+    color: #{map-get($color, text_off)};
   }
 
   .card-content {
@@ -304,7 +303,7 @@ h1 {
       font-size: 1rem;
       font-weight: bold;
       color: rgb(23, 44, 60);
-      border-bottom: 1px solid $color_card;
+      border-bottom: 1px solid #{map-get($color, logo)};
     }
 
     .card-text {
@@ -334,7 +333,7 @@ h1 {
 
     a {
       text-decoration: none;
-      color: $color_logo;
+      color: #{map-get($color, logo)};
       &:hover {
         color: rgb(58, 96, 133);
       }
@@ -416,4 +415,15 @@ form {
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
   @include box-shadow();
+  
+  #error_explanation {
+    h2 {
+      color: #{map-get($color, alert)};
+      }
+
+    li {
+      font-size: 0.75rem;
+      list-style: none;
+    }
+  }
 }

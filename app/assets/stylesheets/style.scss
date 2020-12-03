@@ -8,6 +8,7 @@ $color: (
   text_off: #757575,
   border: #e6ecf0,
   border_dashed: #ccccee,
+  input_focus: #EEEEFF,
 )!default;
 
 @mixin max-screen($break-point) {
@@ -25,6 +26,65 @@ $color: (
 }
 @mixin box-shadow() {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+}
+@mixin card() {
+  margin-top: 1.25rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  & > * {
+    padding: 5px 15px;
+    &:not(:last-child) {
+      @include border_dashed();
+    }
+  }
+  @content;
+}
+@mixin input() {
+  width: 100%;
+  height: 2rem;
+  &:focus {
+    outline: none;
+    background-color: #{map-get($color, input_focus)};
+    border: 1px dashed #{map-get($color, border_dashed)};
+  }
+  @content;
+}
+@mixin publish($marginL: 0rem) {
+  text-decoration: none;
+  color: #{map-get($color, logo)};
+  cursor: pointer;
+  &:hover {
+    color: #3a6085;
+  }
+  &.checked-publish {
+    margin-left: $marginL;
+  }
+
+  input[type=checkbox] {
+    display: none;
+    & + label::after, &:checked +label::after {
+      display: inline-block;
+      font-family: "Font Awesome 5 Free";
+    }
+    & + label::after {
+      content: "\f0c8";
+      font-weight: 400;
+    }
+    &:checked + label::after {
+      content: "\f14a";
+      font-weight: 900;
+    }
+  }
+}
+@mixin submit_btn() {
+  padding: 5px 10px;
+  border-radius: 6px;
+  background-color: #{map-get($color, logo)};
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  &:hover {
+    background-color: #3a83c7;
+  }
 }
 
 /* ボディー */
@@ -92,6 +152,8 @@ header {
 
 /* フッター */
 footer {
+  position: absolute;
+  bottom: 0;
   width: 100%;
   height: 52px;
   display: flex;
@@ -163,41 +225,23 @@ h1 {
 
 /* カード投稿フォーム */
 .form-card{
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.25rem;
-  background-color: rgb(255, 255, 255);
-  border-radius: 4px;
-  @include box-shadow();
-
-  > * {
-    padding: 5px 15px;
-    text-decoration: none;
-    &:not(:last-child) {
-      @include border_dashed();
-    }
+  @include card() {
+    display: flex;
+    flex-direction: column;
   }
+  @include box-shadow();
 
   .alert-warning {
     color: #{map-get($color, alert)};
 
-    li {
+    ul li {
       font-size: 0.75rem;
       list-style: none;
     }
   }
 
   #card_title, #card_text {
-    width: 100%;
-    &:focus {
-      outline: none;
-      border: 1px dashed #{map-get($color, border_dashed)};
-      background-color: #EEEEFF;
-    }
-  }
-
-  #card_title {
-    height: 2rem;
+    @include input();
   }
 
   #card_text {
@@ -213,43 +257,12 @@ h1 {
       display: flex;
 
       label {
-        text-decoration: none;
-        color: #{map-get($color, logo)};
-        cursor: pointer;
-        &:hover {
-          color: #3a6085;
-        }
-        &.checked-publish {
-          margin-left: 1rem;
-        }
-
-        input[type=checkbox] {
-          display: none;
-          & + label::after, &:checked +label::after {
-            display: inline-block;
-            font-family: "Font Awesome 5 Free";
-          }
-          & + label::after {
-            content: "\f0c8";
-            font-weight: 400;
-          }
-          &:checked + label::after {
-            content: "\f14a";
-            font-weight: 900;
-          }
-        }
+        @include publish($marginL: 1rem);
       }
     }
 
     input[type=submit] {
-      padding: 5px 10px;
-      border-radius: 6px;
-      background-color: #{map-get($color, logo)};
-      color: rgb(255, 255, 255);
-      font-weight: bold;
-      &:hover {
-        background-color: rgb(58, 131, 199);
-      }
+      @include submit_btn();
     }
   }
 
@@ -274,18 +287,10 @@ h1 {
 
 /* カード一覧 */
 .card-container {
-  margin-top: 1.25rem;
-  background-color: rgb(255, 255, 255);
-  border-top: solid 4px rgb(68, 149, 227);
-  border-radius: 4px;
-  @include box-shadow();
-
-  > * {
-    padding: 5px 15px;
-    &:not(:last-child) {
-      @include border_dashed();
-    }
+  @include card() {
+    border-top: solid 4px #{map-get($color,logo)};
   }
+  @include box-shadow();
 
   .card-user {
     display: flex;
@@ -363,15 +368,15 @@ h1 {
       display: table-cell;
       @include max-screen($breakpoint-down) {
         width: 10vh;
-        background-color: #4495e3;
+        background-color: #{map-get($color,logo)};
         border-radius: 10%;
-        color: #ffffff;
+        color: #{map-get($color, white)};
         font-weight: bold;
       }
       @include min-screen($breakpoint-up) {
         width: 50px;
         border-radius: 2px;
-        color: #4495e3;
+        color: #{map-get($color,logo)};
       }
       height: 50px;
       text-align: center;
@@ -381,26 +386,26 @@ h1 {
       -o-transition: background-color 0.3s ease;
       transition: background-color  0.3s ease;
       &:hover {
-        background-color: #4495e3;
+        background-color: #{map-get($color,logo)};
       }
       &:active {
         background-color: #3a6085;
       }
       &:hover, &:hover > a, &:active, &:active > a {
-        color: #ffffff;
+        color: #{map-get($color,white)};
       }
       &.current {
-        border: 1px solid #ccccee;
+        border: 1px solid #{map-get($color, border_dashed)};
       }
 
       a {
         text-decoration: none;
         @include max-screen($breakpoint-down) {
-          color: #ffffff;
+          color: #{map-get($color,white)};
           font-weight: bold;
         }
         @include min-screen($breakpoint-up) {
-          color: #4495e3;
+          color: #{map-get($color,logo)};
         }
       }
     }
@@ -409,21 +414,43 @@ h1 {
 
 /* ユーザーフォーム */
 form {
-  display: flex;
-  flex-direction: column;
-  margin-top: 1.25rem;
-  background-color: rgb(255, 255, 255);
-  border-radius: 4px;
+  @include card() {
+    display: flex;
+    flex-direction: column;
+  }
   @include box-shadow();
-  
-  #error_explanation {
-    h2 {
-      color: #{map-get($color, alert)};
-      }
 
-    li {
+  #error_explanation {
+    color: #{map-get($color, alert)};
+
+    h2 {
+      display: none;
+    }
+    ul li {
       font-size: 0.75rem;
       list-style: none;
+    }
+  }
+
+  .field {
+    input {
+      @include input() {
+      }
+    }
+
+    label {
+      @include publish($marginL: 0rem);
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    height: 3.5rem;
+    padding: 0.5rem 1rem;
+
+    input[type=submit] {
+      @include submit_btn();
     }
   }
 }

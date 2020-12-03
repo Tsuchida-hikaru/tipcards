@@ -14,10 +14,7 @@
 
     <div class="main-wrapper">
       <!-- フラッシュメッセージ -->
-      <div class="flash">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-      </div>
+      <%= render 'layouts/notifications' %>
 
       <%= yield %>
     </div>

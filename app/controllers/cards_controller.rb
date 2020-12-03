@@ -3,13 +3,12 @@ class CardsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @cards = Card.includes(:user).order(updated_at: :DESC)
-    @cards = Card.page(params[:page]).per(3)
+    @cards = Card.includes(:user).order(updated_at: "DESC").page(params[:page]).per(5)
     @card = Card.new
   end
 
   def create
-    @cards = Card.includes(:user)
+    @cards = Card.includes(:user).order(updated_at: :DESC).page(params[:page]).per(5)
     @card = Card.create(card_params)
     if @card.save
       redirect_to cards_path, flash: { notice: "カードを投稿しました" }

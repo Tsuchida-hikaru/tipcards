@@ -12,10 +12,11 @@
   <body>
     <%= render partial: 'layouts/header'%>
 
-    <div class="main-wrapper">
-      <!-- フラッシュメッセージ -->
-      <%= render 'layouts/notifications' %>
+    <!-- フラッシュメッセージ -->
+    <%= render 'layouts/notifications' %>
 
+    <!-- メインコンテンツ -->
+    <div class="main-wrapper">
       <%= yield %>
     </div>
 

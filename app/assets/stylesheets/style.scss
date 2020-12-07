@@ -316,6 +316,7 @@ h1 {
 /* カード一覧 */
 .card-container {
   @include card() {
+    margin-bottom: 2rem;
     border-top: solid 4px #{map-get($color,logo)};
   }
 

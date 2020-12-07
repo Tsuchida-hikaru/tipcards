@@ -1,7 +1,6 @@
 $breakpoint-up: 768px;
 $breakpoint-down: 767px;
-$color: (
-  main: #f5f5f5,
+$color: (main: #f5f5f5,
   white: #ffffff,
   logo: #4495e3,
   alert: #d92033,
@@ -9,79 +8,98 @@ $color: (
   border: #e6ecf0,
   border_dashed: #ccccee,
   input_focus: #EEEEFF,
-)!default;
+) !default;
 
 @mixin max-screen($break-point) {
   @media screen and (max-width: $break-point) {
     @content;
   }
 }
+
 @mixin min-screen($break-point) {
   @media screen and (min-width: $break-point) {
     @content;
   }
 }
+
 @mixin border_dashed() {
   border-bottom: 1px dashed #{map-get($color, border)};
 }
+
 @mixin box-shadow() {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
 }
+
 @mixin card() {
   margin-top: 1.25rem;
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
-  & > * {
+
+  &>* {
     padding: 5px 15px;
+
     &:not(:last-child) {
       @include border_dashed();
     }
   }
+
   @content;
 }
+
 @mixin input() {
   width: 100%;
   height: 2rem;
+
   &:focus {
     outline: none;
     background-color: #{map-get($color, input_focus)};
     border: 1px dashed #{map-get($color, border_dashed)};
   }
+
   @content;
 }
+
 @mixin publish($marginL: 0rem) {
   text-decoration: none;
   color: #{map-get($color, logo)};
   cursor: pointer;
+
   &:hover {
     color: #3a6085;
   }
+
   &.checked-publish {
     margin-left: $marginL;
   }
 
   input[type=checkbox] {
     display: none;
-    & + label::after, &:checked +label::after {
+
+    &+label::after,
+    &:checked+label::after {
       display: inline-block;
       font-family: "Font Awesome 5 Free";
     }
-    & + label::after {
+
+    &+label::after {
       content: "\f0c8";
       font-weight: 400;
     }
-    &:checked + label::after {
+
+    &:checked+label::after {
       content: "\f14a";
       font-weight: 900;
     }
   }
 }
+
 @mixin submit_btn() {
   padding: 5px 10px;
   border-radius: 6px;
   background-color: #{map-get($color, logo)};
   color: rgb(255, 255, 255);
   font-weight: bold;
+
   &:hover {
     background-color: #3a83c7;
   }
@@ -99,7 +117,7 @@ header {
   background-color: #ffffff;
   box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
 
-  .header-wrapper{
+  .header-wrapper {
     width: 100%;
     height: 100%;
     padding: 0 20px;
@@ -120,7 +138,7 @@ header {
         }
       }
     }
-    
+
     nav {
       display: flex;
       height: 100%;
@@ -130,10 +148,12 @@ header {
       .hover-underline {
         height: 100%;
         border-bottom: #{map-get($color, white)} solid 3px;
+
         &:hover {
           border-bottom: #{map-get($color, logo)} solid 3px;
         }
-        &:not(:first-child) > a > svg {
+
+        &:not(:first-child)>a>svg {
           margin-right: 5px
         }
 
@@ -168,15 +188,18 @@ footer {
 
 /* フラッシュメッセージ */
 div.flash {
-  max-width: 600px;
+  width: 100%;
   min-width: 300px;
-  margin-bottom: 16px;
+  max-width: 600px;
+  margin: 0 auto 16px;
+  padding: 0 50px;
 
-  > * {
+  >* {
     position: relative;
     padding: 0.75rem 1.25rem;
     border: 1px solid transparent;
     border-radius: 0.25rem;
+
     &:empty {
       padding: 0;
       border: 0px;
@@ -226,11 +249,12 @@ h1 {
 }
 
 /* カード投稿フォーム */
-.form-card{
+.form-card {
   @include card() {
     display: flex;
     flex-direction: column;
   }
+
   @include box-shadow();
 
   .alert-warning {
@@ -242,7 +266,8 @@ h1 {
     }
   }
 
-  #card_title, #card_text {
+  #card_title,
+  #card_text {
     @include input();
   }
 
@@ -271,7 +296,8 @@ h1 {
   .images-container {
     display: flex;
     flex-direction: column;
-    & > * {
+
+    &>* {
       margin-bottom: 0.5rem;
     }
 
@@ -292,6 +318,7 @@ h1 {
   @include card() {
     border-top: solid 4px #{map-get($color,logo)};
   }
+
   @include box-shadow();
 
   .card-user {
@@ -323,7 +350,7 @@ h1 {
       .card-image {
         margin-bottom: 1rem;
 
-          img {
+        img {
           width: 100%;
           max-width: 500px;
           border-radius: 10px;
@@ -341,9 +368,11 @@ h1 {
     a {
       text-decoration: none;
       color: #{map-get($color, logo)};
+
       &:hover {
         color: rgb(58, 96, 133);
       }
+
       &:last-child {
         margin-left: 1rem;
       }
@@ -359,15 +388,18 @@ h1 {
     display: table;
     border-collapse: separate;
     margin: auto;
+
     @include max-screen($breakpoint-down) {
       border-spacing: 1rem 0;
     }
+
     @include min-screen($breakpoint-up) {
       border-spacing: 0.25rem 0;
     }
 
     span {
       display: table-cell;
+
       @include max-screen($breakpoint-down) {
         width: 10vh;
         background-color: #{map-get($color,logo)};
@@ -375,37 +407,48 @@ h1 {
         color: #{map-get($color, white)};
         font-weight: bold;
       }
+
       @include min-screen($breakpoint-up) {
         width: 50px;
         border-radius: 2px;
         color: #{map-get($color,logo)};
       }
+
       height: 50px;
       text-align: center;
       vertical-align: middle;
       -webkit-transition: background-color 0.3s ease;
       -moz-transition: background-color 0.3s ease;
       -o-transition: background-color 0.3s ease;
-      transition: background-color  0.3s ease;
+      transition: background-color 0.3s ease;
+
       &:hover {
         background-color: #{map-get($color,logo)};
       }
+
       &:active {
         background-color: #3a6085;
       }
-      &:hover, &:hover > a, &:active, &:active > a {
+
+      &:hover,
+      &:hover>a,
+      &:active,
+      &:active>a {
         color: #{map-get($color,white)};
       }
+
       &.current {
         border: 1px solid #{map-get($color, border_dashed)};
       }
 
       a {
         text-decoration: none;
+
         @include max-screen($breakpoint-down) {
           color: #{map-get($color,white)};
           font-weight: bold;
         }
+
         @include min-screen($breakpoint-up) {
           color: #{map-get($color,logo)};
         }
@@ -420,6 +463,7 @@ form {
     display: flex;
     flex-direction: column;
   }
+
   @include box-shadow();
 
   #error_explanation {
@@ -428,6 +472,7 @@ form {
     h2 {
       display: none;
     }
+
     ul li {
       font-size: 0.75rem;
       list-style: none;
@@ -436,8 +481,7 @@ form {
 
   .field {
     input {
-      @include input() {
-      }
+      @include input() {}
     }
 
     label {

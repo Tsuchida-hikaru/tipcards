@@ -4,7 +4,8 @@ $color: (main: #f5f5f5,
   white: #ffffff,
   logo: #4495e3,
   logo_selected: #082d52,
-  alert: #d92033,
+  alert: hsl(354, 74%, 49%),
+  heading: #172c3c,
   text_off: #757575,
   border: #e6ecf0,
   border_dashed: #ccccee,
@@ -29,6 +30,17 @@ $color: (main: #f5f5f5,
 
 @mixin box-shadow() {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+@mixin link-text () {
+  text-decoration: none;
+  color: #{map-get($color, logo)};
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    color: #{map-get($color,logo_selected)};
+  }
 }
 
 @mixin card() {
@@ -61,13 +73,7 @@ $color: (main: #f5f5f5,
 }
 
 @mixin label($marginL: 0rem) {
-  text-decoration: none;
-  color: #{map-get($color, logo)};
-  cursor: pointer;
-
-  &:hover {
-    color: #{map-get($color,logo_selected)};;
-  }
+  @include link-text();
 
   &.checked-publish {
     margin-left: $marginL;
@@ -98,7 +104,7 @@ $color: (main: #f5f5f5,
   padding: 5px 10px;
   border-radius: 6px;
   background-color: #{map-get($color, logo)};
-  color: rgb(255, 255, 255);
+  color: #ffffff;
   font-weight: bold;
 
   &:hover {
@@ -231,7 +237,7 @@ div.flash {
 
 }
 
-/* コンテナー */
+/* コンテナー／h1要素 */
 .container {
   width: 100%;
   display: flex;
@@ -246,7 +252,16 @@ div.flash {
 
 h1 {
   font-size: 1.25rem;
-  color: rgb(23, 44, 60);
+  color: #{map-get($color, heading)};
+}
+
+.h1-mypage {
+  display: flex;
+  justify-content: space-between;
+
+  >p>a {
+    @include link-text();
+  }
 }
 
 /* カード投稿フォーム */
@@ -338,7 +353,7 @@ h1 {
       height: 2rem;
       font-size: 1rem;
       font-weight: bold;
-      color: rgb(23, 44, 60);
+      color: #{map-get($color, heading)};
       border-bottom: 1px solid #{map-get($color, logo)};
     }
 
@@ -368,12 +383,7 @@ h1 {
     margin: 5px;
 
     a {
-      text-decoration: none;
-      color: #{map-get($color, logo)};
-
-      &:hover {
-        color: rgb(58, 96, 133);
-      }
+      @include link-text();
 
       &:last-child {
         margin-left: 1rem;
@@ -503,20 +513,14 @@ form {
   }
 }
 
-.link-sign {
+.link-devise {
   width: 100%;
   min-width: 300px;
   max-width: 600px;
   margin: 1.5rem 0;
   text-align: right;
   
-  p a {
-    text-decoration: none;
-    color: #{map-get($color, logo)};
-
-    &:hover,
-    &:active {
-      color: #{map-get($color,logo_selected)};
-    }
+  p>a {
+    @include link-text();
   }
 }

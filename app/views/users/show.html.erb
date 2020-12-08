@@ -1,12 +1,14 @@
-<% if user_signed_in? && @user == current_user %>
-  <h1><%= @user.name %>：マイページ</h1>
-<% else %>
-  <h1><%= @user.name %>：ユーザーページ</h1>
-<% end %>
+<div class="h1-mypage">
+  <% if user_signed_in? && @user == current_user %>
+    <h1><%= @user.name %>：マイページ</h1>
+  <% else %>
+    <h1><%= @user.name %>：ユーザーページ</h1>
+  <% end %>
 
-<% if user_signed_in? && @user == current_user %>
-  <%= link_to "プロフィール編集", edit_user_registration_path(current_user) %>
-<% end %>
+  <% if user_signed_in? && @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_registration_path(current_user) %></p>
+  <% end %>
+</div>
 
 <!-- カード一覧表示 -->
 <div class="contents">

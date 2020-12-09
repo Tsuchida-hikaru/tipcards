@@ -5,7 +5,7 @@ $color: (main: #f5f5f5,
   logo: #4495e3,
   logo_selected: #082d52,
   alert: hsl(354, 74%, 49%),
-  heading: #172c3c,
+  heading: #091b29,
   text_off: #757575,
   border: #e6ecf0,
   border_dashed: #ccccee,
@@ -41,6 +41,8 @@ $color: (main: #f5f5f5,
   &:active {
     color: #{map-get($color,logo_selected)};
   }
+
+  @content;
 }
 
 @mixin card() {
@@ -73,7 +75,15 @@ $color: (main: #f5f5f5,
 }
 
 @mixin label($marginL: 0rem) {
-  @include link-text();
+  @include link-text() {
+
+    &:hover>*,
+    &:active>* {
+      color: #{map-get($color, logo_selected)};
+    }
+  }
+
+  ;
 
   &.checked-publish {
     margin-left: $marginL;
@@ -96,25 +106,45 @@ $color: (main: #f5f5f5,
     &:checked+label::after {
       content: "\f14a";
       font-weight: 900;
+
     }
   }
 }
 
 @mixin submit_btn() {
-  padding: 5px 10px;
-  border-radius: 6px;
+  padding: 5px 16px;
+  border-radius: 4px;
   background-color: #{map-get($color, logo)};
   color: #ffffff;
   font-weight: bold;
+  @content;
 
   &:hover {
     background-color: #3a83c7;
   }
 }
 
-/* ボディー */
+/* 要素 */
 body {
   background-color: #{map-get($color, main)};
+}
+
+h1,
+h2,
+h3 {
+  color: #{map-get($color, heading)};
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 1rem;
 }
 
 /* ヘッダー */
@@ -196,7 +226,7 @@ footer {
 /* フラッシュメッセージ */
 div.flash {
   width: 100%;
-  min-width: 300px;
+  min-width: 400px;
   max-width: 600px;
   margin: 0 auto 16px;
   padding: 0 50px;
@@ -237,7 +267,7 @@ div.flash {
 
 }
 
-/* コンテナー／h1要素 */
+/* コンテナー */
 .container {
   width: 100%;
   display: flex;
@@ -248,11 +278,6 @@ div.flash {
     width: 100%;
     margin-bottom: 2rem;
   }
-}
-
-h1 {
-  font-size: 1.25rem;
-  color: #{map-get($color, heading)};
 }
 
 .h1-mypage {
@@ -499,6 +524,13 @@ form {
     label {
       @include label($marginL: 0rem);
     }
+
+    .annotation {
+      color: #{map-get($color, alert)};
+      font-size: 0.75rem;
+      font-style: italic;
+      vertical-align: top;
+    }
   }
 
   .actions {
@@ -513,14 +545,36 @@ form {
   }
 }
 
+/* 退会フォーム */
+.delete-account {
+  margin-top: 2rem;
+  box-shadow: none;
+
+  input[type=submit] {
+    padding: 5px 16px;
+    border-radius: 6px;
+    background-color: #{map-get($color, alert)};
+    color: #{map-get($color, white)};
+    font-weight: bold;
+  
+    &:hover {
+      background-color: #a01623;
+      color: #{map-get($color, white)};
+    }
+
+    border: none;
+  }
+}
+
+/* deviseテキストリンク */
 .link-devise {
   width: 100%;
   min-width: 300px;
   max-width: 600px;
   margin: 1.5rem 0;
   text-align: right;
-  
-  p>a {
+
+  a {
     @include link-text();
   }
 }

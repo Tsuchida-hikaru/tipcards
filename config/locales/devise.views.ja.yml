@@ -55,6 +55,7 @@ ja:
         forgot_your_password: "パスワードを忘れた場合はこちら"
         send_me_reset_password_instructions: "パスワードの再設定方法を送信する"
     registrations:
+      destroyed: "アカウントを削除しました"
       edit:
         are_you_sure: "データはすべて削除されてしまいますが、よろしいですか?"
         cancel_my_account: "退会"
@@ -63,7 +64,7 @@ ja:
         title: "%{resource}編集"
         unhappy: "下記のボタンを押すと、アカウント情報は削除され退会します"
         update: "更新"
-        we_need_your_current_password_to_confirm_your_changes: "登録情報を変更する際は、現在のパスワードを入力してください"
+        we_need_your_current_password_to_confirm_your_changes: "※登録情報を変更する際は入力必須です"
       new:
         sign_up: "アカウント登録"
     sessions:

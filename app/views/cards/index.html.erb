@@ -8,7 +8,7 @@
       <%= f.text_area :text, placeholder: "本文（３００文字以内）" %>
       <div class="form-items-wrapper">
         <div class="form-items">
-          <%= f.label :images, "画像投稿" do %>
+          <%= f.label :images, "画像投稿", for: "file-input" do %>
             <i class="fas fa-images"></i>：画像投稿
             <%= f.file_field :images, id: "file-input", multiple: true, style: "display: none;" %>
           <% end %>

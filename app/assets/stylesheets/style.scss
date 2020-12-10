@@ -147,6 +147,19 @@ h3 {
   font-size: 1rem;
 }
 
+/* レスポンシブ */
+.pc {
+  @include max-screen($breakpoint-down) {
+    display: none;
+  }
+}
+
+.mobile {
+  @include min-screen($breakpoint-down) {
+    display: none;
+  }
+}
+
 /* ヘッダー */
 header {
   width: 100%;
@@ -191,7 +204,11 @@ header {
         }
 
         &>a>svg {
-          margin-right: 5px
+          @include min-screen($breakpoint-up) {
+            margin-right: 5px
+          }
+
+          ;
         }
 
         a {
@@ -282,7 +299,16 @@ div.flash {
 
 .h1-mypage {
   display: flex;
-  justify-content: space-between;
+
+  @include max-screen($breakpoint-down) {
+    flex-direction: column;
+  }
+
+  @include min-screen($breakpoint-up) {
+    justify-content: space-between
+  }
+
+  ;
 
   >p>a {
     @include link-text();
@@ -375,7 +401,7 @@ div.flash {
     .card-title {
       display: flex;
       align-items: center;
-      height: 2rem;
+      min-height: 2rem;
       font-size: 1rem;
       font-weight: bold;
       color: #{map-get($color, heading)};
@@ -556,7 +582,7 @@ form {
     background-color: #{map-get($color, alert)};
     color: #{map-get($color, white)};
     font-weight: bold;
-  
+
     &:hover {
       background-color: #a01623;
       color: #{map-get($color, white)};

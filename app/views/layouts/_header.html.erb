@@ -1,38 +1,67 @@
-<header>
-  <div class="header-wrapper">
+  <header>
+    <div class="header-wrapper">
     <div class="title-logo">
       <%= link_to image_tag("tipcards_logo.png", alt: "TipCards"), root_path %>
     </div>
+
     <nav>
-      <div class="hover-underline">
+      <div class="hover-underline mobile">
         <%= link_to root_path do %>
-          <i class="fas fa-home fa-lg"></i>
-          サイトトップ
+        <i class="fas fa-home fa-lg"></i>
         <% end %>
       </div>
+      <div class="hover-underline pc">
+        <%= link_to root_path do %>
+        <i class="fas fa-home fa-lg"></i>
+        サイトトップ
+        <% end %>
+      </div>
+
       <% if user_signed_in? %>
-        <div class="hover-underline">
+        <div class="hover-underline mobile">
           <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fas fa-sign-out-alt fa-lg""></i>
+            <i class="fas fa-sign-out-alt fa-lg"></i>
+          <% end %>
+        </div>
+        <div class="hover-underline pc">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fas fa-sign-out-alt fa-lg"></i>
             サインアウト
           <% end %>
         </div>
-        <div class="hover-underline">
+
+        <div class="hover-underline mobile">
           <%= link_to user_path(current_user) do %>
-            <i class="fas fa-user fa-lg""></i>
+            <i class="fas fa-user fa-lg"></i>
+          <% end %>
+        </div>
+        <div class="hover-underline pc">
+          <%= link_to user_path(current_user) do %>
+            <i class="fas fa-user fa-lg"></i>
             <strong><%= current_user.name %></strong>
           <% end %>
         </div>
       <% else %>
-        <div class="hover-underline">
+        <div class="hover-underline mobile">
           <%= link_to new_user_registration_path do %>
-            <i class="fas fa-user-plus fa-lg""></i>
+            <i class="fas fa-user-plus fa-lg"></i>
+          <% end %>
+        </div>
+        <div class="hover-underline pc">
+          <%= link_to new_user_registration_path do %>
+            <i class="fas fa-user-plus fa-lg"></i>
             新規登録
           <% end %>
         </div>
-        <div class="hover-underline">
+
+        <div class="hover-underline mobile">
           <%= link_to new_user_session_path do %>
-            <i class="fas fa-sign-in-alt fa-lg""></i>
+            <i class="fas fa-sign-in-alt fa-lg"></i>
+          <% end %>
+        </div>
+        <div class="hover-underline pc">
+          <%= link_to new_user_session_path do %>
+            <i class="fas fa-sign-in-alt fa-lg"></i>
             ログイン
           <% end %>
         </div>

@@ -1,8 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
   before do
-    @cards = FactoryBot.build(:card)
+    @card = FactoryBot.build(:card)
+  end
+  describe '#create' do
+    subject { @card.errors.full_messages }
+    it 'タイトルが空のとき' do
+      @card.title = ''
+      @card.valid?
+      is_expected.to include ''
+    end
   end
 end

@@ -13,32 +13,32 @@ RSpec.describe Card, type: :model do
     end
     context '新規投稿出来ないとき' do
       subject { @card.errors.full_messages }
-      it 'タイトルが空のとき' do
+      it 'タイトルが空' do
         @card.title = ''
         @card.valid?
         is_expected.to include 'タイトルを入力してください'
       end
-      it '本文が空のとき' do
+      it '本文が空' do
         @card.text = ''
         @card.valid?
         is_expected.to include '本文を入力してください'
       end
-      it '公開設定が未設定のとき' do
+      it '公開設定が未設定' do
         @card.publish_setting = ''
         @card.valid?
         is_expected.to include '公開設定を入力してください'
       end
-      it 'タイトルが３１文字以上のとき（全角）' do
+      it 'タイトルが３１文字以上（全角）' do
         @card.title = '１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１'
         @card.valid?
         is_expected.to include 'タイトルは３０文字以内で記入してください'
       end
-      it 'タイトルが３１文字以上のとき（半角）' do
+      it 'タイトルが３１文字以上（半角）' do
         @card.title = '1234567890123456789012345678901'
         @card.valid?
         is_expected.to include 'タイトルは３０文字以内で記入してください'
       end
-      it '本文が３０１文字以上のとき' do
+      it '本文が３０１文字以上' do
         @card.text = '１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１'
         @card.valid?
         is_expected.to include '本文は３００文字以内で記入してください'

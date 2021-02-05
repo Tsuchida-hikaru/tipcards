@@ -1,0 +1,2 @@
+class CardTagRelation < ApplicationRecord
+end

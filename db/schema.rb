@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 2020_11_06_054637) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "card_tag_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["card_id"], name: "index_card_tag_relations_on_card_id"
+    t.index ["tag_id"], name: "index_card_tag_relations_on_tag_id"
+  end
+
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title", null: false
@@ -44,12 +53,9 @@ ActiveRecord::Schema.define(version: 2020_11_06_054637) do
   end
 
   create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "card_id", null: false
-    t.bigint "tag_id", null: false
+    t.string "tag", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["card_id"], name: "index_tags_on_card_id"
-    t.index ["tag_id"], name: "index_tags_on_tag_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -67,14 +73,8 @@ ActiveRecord::Schema.define(version: 2020_11_06_054637) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "users_tags_relations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "tag", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "card_tag_relations", "cards"
+  add_foreign_key "card_tag_relations", "tags"
   add_foreign_key "cards", "users"
-  add_foreign_key "tags", "cards"
-  add_foreign_key "tags", "tags"
 end

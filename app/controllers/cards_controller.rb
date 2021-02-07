@@ -3,13 +3,13 @@ class CardsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @cards = Card.includes(:user).order(updated_at: "DESC").page(params[:page]).per(5)
-    @card = Card.new
+    @cards = Card.includes([:user, card_tag_relations: :tag]).order(updated_at: "DESC").page(params[:page]).per(5)
+    @card = CardTag.new
   end
 
   def create
     @cards = Card.includes(:user).order(updated_at: :DESC).page(params[:page]).per(5)
-    @card = Card.create(card_params)
+    @card = CardTag.new(card_params)
     if @card.save
       redirect_to cards_path, flash: { notice: "カードを投稿しました" }
     else
@@ -54,7 +54,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:title, :text, :publish_setting, images: []).merge(user_id: current_user.id)
+    params.require(:card_tag).permit(:title, :text, :publish_setting, { images: [] }, :tag).merge(user_id: current_user.id)
   end
 
   def set_card

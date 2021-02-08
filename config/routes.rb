@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'cards#index'
   resources :users, only: [:show]
-  resources :cards
+  resources :cards do
+    collection do
+      get 'search'
+    end 
+  end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -1,24 +1,38 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# TipCards
+## 概要
+「TipCards」は、ウェブブラウザ上から短文や画像を記入したカードを投稿し、自身で読み返すのはもちろん、
+不特定多数の他人と共有する事ができるウェブアプリケーションです。
+カードにはタグを付けて投稿することが可能で、タグごとにカードを検索することが可能です。
+もちろん、投稿したカードはあとから編集や削除することもでき、投稿者以外には表示されないようにする公開設定機能も備わっています。
 
-Things you may want to cover:
+## 利用方法
+カードを投稿するには、ログイン状態である必要があります。
+画面上部のナビゲーションメニューより、下記のテストアカウントにてログインしていただくか、
+架空でも結構ですので、新規登録にてメールアドレスとニックネームを入力してください。
 
-* Ruby version
+新規カードの投稿は、サイトトップ画面から行えます。
+タイトルと本文、タグを記入して頂き、「投稿する」ボタンを押してください。
+投稿したカードの編集・削除はカードの下部にリンクが表示されています。
+また、ご自身の投稿したカードの一覧はマイページに表示されます。
 
-* System dependencies
+### デプロイ済み環境
+デプロイはAWS上で行っており、自動デプロイ機能も実装済みです。
+http://54.150.110.220/
 
-* Configuration
+■テストアカウント
+メールアドレス：tarou@tarou.com
+パスワード：tarou123
 
-* Database creation
+## 開発環境
+- 使用言語・フレームワーク
+Ruby 2.6.5
+Rails 6.0.3.4
+Javascript
 
-* Database initialization
+- データベース
+MYSQL
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- デプロイ環境
+AWS（EC2, S3)

@@ -53,9 +53,8 @@ class CardsController < ApplicationController
 
   def search
     return nil if params[:keyword] == ""
-      tag = Tag.where( ['tag LIKE ?', "%#{params[:keyword]}"] )
-      render json:{ keyword: tag }
-    end
+    tag = Tag.where( ['tag LIKE ?', "%#{params[:keyword]}%"] )
+    render json: { keyword: tag }
   end
 
   private

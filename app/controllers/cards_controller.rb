@@ -3,7 +3,7 @@ class CardsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @cards = Card.includes([:user, card_tag_relations: :tag]).order(updated_at: "DESC").page(params[:page]).per(5)
+    @cards = Card.includes([:user, card_tag_relations: :tag]).order(updated_at: :DESC).page(params[:page]).per(5)
     @card = CardTag.new
   end
 

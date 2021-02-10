@@ -1,4 +1,4 @@
-<% @cards.each do |card|%>
+<% @cards.each do |card| %>
   <% if card.publish_setting == true || card.user == current_user %>
     <div class="card-container">
       <div class="card-user">
@@ -16,7 +16,11 @@
             <% end %>
           <% end %>
         </div>
-        <div class="card-tag"><%= card.tags %></div>
+        <div class="card-tag">
+          <% card.tags.each do |t| %>
+            <%= t.tag %>
+          <% end %>
+        </div>
       </div>
 
       <% if user_signed_in? && card.user.id == current_user.id %>

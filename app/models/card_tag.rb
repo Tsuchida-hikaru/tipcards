@@ -10,16 +10,15 @@ class CardTag
     validates :tag
   end
 
-  def update_name
-    self.tag = @tag
-  end
-
   def save
-    tag = @tag
-    card = Card.create(title: title, text: text, publish_setting: publish_setting, images: images, user_id: user_id)
-    tag = Tag.where(tag: tag).first_or_initialize
-    tag.save
+    tags = @tag.split(",")
 
-    CardTagRelation.create(card_id: card.id, tag_id: tag.id)
+    card = Card.create(title: title, text: text, publish_setting: publish_setting, images: images, user_id: user_id)
+    tags.each do |t|
+      tag = Tag.where(tag: t).first_or_initialize
+      tag.save
+      CardTagRelation.create(card_id: card.id, tag_id: tag.id)
+    end
+
   end
 end

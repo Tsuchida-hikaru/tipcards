@@ -2,6 +2,7 @@ if (location.pathname.match("", "cards")){
     document.addEventListener("DOMContentLoaded", () => {
         const inputElement = document.getElementById("card_tag_tag");
         inputElement.addEventListener("keyup", () => {
+            console.log("読み込み成功");
             const keyword = document.getElementById("card_tag_tag").value;
             const XHR = new XMLHttpRequest();
             XHR.open("GET", `cards/search/?keyword=${keyword}`, true);
@@ -16,7 +17,7 @@ if (location.pathname.match("", "cards")){
                         const childElement = document.createElement("div");
                         childElement.setAttribute("class", "child");
                         childElement.setAttribute("id", tag.id);
-                        childElement.innerHTML = tag;
+                        childElement.innerHTML = tag.tag;
                         searchResult.appendChild(childElement);
                         const clickElement = document.getElementById(tag.id);
                         clickElement.addEventListener("click", () => {

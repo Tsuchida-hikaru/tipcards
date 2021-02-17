@@ -21,12 +21,19 @@ if (location.pathname.match("", "cards")){
                         searchResult.appendChild(childElement);
                         const clickElement = document.getElementById(tag.id);
                         clickElement.addEventListener("click", () => {
-                            document.getElementById("card_tag_tag").value = clickElement.textContent;
+                            let keyWords = document.getElementById("card_tag_tag");
+                            if (keyWords.value.includes(",")) {
+                                var addTag = `${clickElement.textContent},`
+                            } else {
+                                keyWords.value = ""
+                                var addTag = `${clickElement.textContent},`
+                            }
+                            keyWords.value += addTag;
                             clickElement.remove();
                         });
                     });
-                };
+                }
             };
         });
     });
-};
+}

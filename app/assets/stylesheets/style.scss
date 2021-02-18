@@ -320,6 +320,21 @@ div.flash {
   @include card() {
     display: flex;
     flex-direction: column;
+    
+    #search-result {
+      min-height: 2.75rem;
+      color: #777777;
+      user-select:none;
+
+      .child {
+        cursor: pointer;
+        
+        &:hover,
+        &:active {
+          color: #000000;
+        }
+      }
+    }
   }
 
   @include box-shadow();

@@ -7,7 +7,7 @@
       <%= f.text_field :title, placeholder: "カードのタイトル（３０文字以内）" %>
       <%= f.text_area :text, placeholder: "本文（３００文字以内）" %>
       <%= f.text_field :tag, placeholder: "タグは“,”カンマで区切ると複数設定できます" %>
-      <div id="search-result"></div>
+      <div id="search-result">表示されたタグの候補を選択できます</div>
       <div class="form-items-wrapper">
         <div class="form-items">
           <%= f.label :images, "画像投稿", for: "file-input", class: "mobile" do %>

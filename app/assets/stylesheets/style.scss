@@ -412,9 +412,10 @@ div.flash {
   }
 
   .card-content {
-    overflow: hidden;
-    transition: all 0.5s;
 
+    .icon-opened {
+      
+    }
     .card-title {
       cursor: pointer;
       display: flex;
@@ -427,7 +428,10 @@ div.flash {
     }
 
     .card-text {
-      padding: 1rem 0;
+      overflow: hidden;
+      height: 0;
+      padding: 1rem 0px;
+      transition: all 0.2s ease-out;
     }
 
     .card-images {

@@ -412,8 +412,11 @@ div.flash {
   }
 
   .card-content {
+    overflow: hidden;
+    transition: all 0.5s;
 
     .card-title {
+      cursor: pointer;
       display: flex;
       align-items: center;
       min-height: 2rem;

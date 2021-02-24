@@ -51,12 +51,9 @@ $color: (main: #f5f5f5,
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
 
-  &>*,
-  &>.alert>*
-  &>.field_with_errors>* {
+  &>* {
     padding: 10px 15px;
-    width: 100%;
-
+  
     &:not(:last-child) {
       @include border_dashed();
     }
@@ -324,6 +321,10 @@ div.flash {
   @include card() {
     display: flex;
     flex-direction: column;
+
+    .field_with_errors>* {
+      width: 100%;
+    }
     
     #search-result {
       min-height: 2.75rem;

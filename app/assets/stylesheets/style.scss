@@ -51,8 +51,11 @@ $color: (main: #f5f5f5,
   background-color: rgb(255, 255, 255);
   border-radius: 4px;
 
-  &>* {
+  &>*,
+  &>.alert>*
+  &>.field_with_errors>* {
     padding: 10px 15px;
+    width: 100%;
 
     &:not(:last-child) {
       @include border_dashed();
@@ -602,8 +605,12 @@ form {
 
 /* 退会フォーム */
 .delete-account {
-  margin-top: 2rem;
+  margin-top: 2rem;/*  */
   box-shadow: none;
+
+  .button_to {
+    min-height: 0!important;
+  }
 
   input[type=submit] {
     padding: 5px 16px;

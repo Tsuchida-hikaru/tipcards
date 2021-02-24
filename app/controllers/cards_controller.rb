@@ -10,7 +10,7 @@ class CardsController < ApplicationController
   def create
     @cards = Card.includes(:user).order(updated_at: :DESC).page(params[:page]).per(5)
     @card = CardTag.new(card_params)
-    if @card.save
+    if @card.valid?
       redirect_to cards_path, flash: { notice: "カードを投稿しました" }
     else
       flash.now[:alert] = "カード投稿に失敗しました"

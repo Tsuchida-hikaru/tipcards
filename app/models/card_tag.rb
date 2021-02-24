@@ -11,6 +11,7 @@ class CardTag
   end
 
   def save
+    # タグをカンマ起点で配列に分割
     tags = @tag.split(",")
 
     card = Card.create(title: title, text: text, publish_setting: publish_setting, images: images, user_id: user_id)

@@ -84,30 +84,28 @@ $color: (main: #f5f5f5,
     }
   }
 
-  ;
-
   &.checked-publish {
     margin-left: $marginL;
-  }
-
-  input[type=checkbox] {
-    display: none;
-
-    &+label::after,
-    &:checked+label::after {
-      display: inline-block;
-      font-family: "Font Awesome 5 Free";
-    }
-
-    &+label::after {
-      content: "\f0c8";
-      font-weight: 400;
-    }
-
-    &:checked+label::after {
-      content: "\f14a";
-      font-weight: 900;
-
+    
+    input[type=checkbox],
+    input#card_tag_publish_setting {
+      display: none;
+      
+      &+label::after,
+      &:checked+label::after {
+        display: inline-block;
+        font-family: "Font Awesome 5 Free";
+      }
+      
+      &+label::after {
+        content: "\f0c8";
+        font-weight: 400;
+      }
+      
+      &:checked+label::after {
+        content: "\f14a";
+        font-weight: 900;
+      }
     }
   }
 }

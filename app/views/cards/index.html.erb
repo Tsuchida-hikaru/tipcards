@@ -8,34 +8,28 @@
       <%= f.text_area :text, placeholder: "本文（３００文字以内）" %>
       <%= f.text_field :tag, placeholder: "タグは“,”カンマで区切ると複数設定できます" %>
       <div id="search-result">表示されたタグの候補を選択できます</div>
+
+      <%# 投稿オプション %>
       <div class="form-items-wrapper">
         <div class="form-items">
-          <%= f.label :images, "画像投稿", for: "file-input", class: "mobile" do %>
-            <i class="fas fa-images"></i>
-            <%= f.file_field :images, id: "file-input", multiple: true, style: "display: none;" %>
-          <% end %>
-          <%= f.label :images, "画像投稿", for: "file-input", class: "pc" do %>
-            <i class="fas fa-images"></i>：画像投稿
+          <%= f.label :images, "画像投稿", for: "file-input" do %>
+            <i class="fas fa-images"></i><span class="pc">：画像投稿</span>
             <%= f.file_field :images, id: "file-input", multiple: true, style: "display: none;" %>
           <% end %>
 
-          <%= f.label :publish_setting, "公開設定", class: "checked-publish mobile" do %>
-            <i class="fas fa-globe"></i>：
-            <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
-            <%= f.label :publish_setting do %>
-            <% end %>
-          <% end %>
-          <%= f.label :publish_setting, "公開設定", class: "checked-publish pc" do %>
-            <i class="fas fa-globe"></i>：公開する
-            <% if @user.publish_setting == 1 %>
-              <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
-            <% else %>
+          <%# 公開設定 %>
+          <%= f.label :publish_setting, "公開設定", class: "checked-publish" do %>
+            <i class="fas fa-globe"></i><span class="pc">：公開する</span>
+            <% if user_signed_in? && @user.publish_setting == false %>
               <%= f.check_box :publish_setting, { checked: false }, "true", "false" %>
+            <% else %>
+              <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
             <% end %>
             <%= f.label :publish_setting do %>
             <% end %>
           <% end %>
         </div>
+
         <div class="form-items-btn">
           <%= f.submit "投稿する"%>
         </div>

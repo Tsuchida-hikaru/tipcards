@@ -3,7 +3,6 @@ ja:
     models:
       card: "カード"
       tag: "タグ"
-      card_tag: "カード・タグ"
     attributes:
       card:
         title: "タイトル"

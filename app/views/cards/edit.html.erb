@@ -4,10 +4,10 @@
   <div class="contents">
     <%= form_with model: @card, url: card_path, method: :put, class: "form-card", local: true do |f| %>
       <%= render "layouts/error_messages", model: f.object %>
-
       <%= f.text_field :title, placeholder: "カードのタイトル" %>
       <%= f.text_area :text, placeholder: "本文" %>
 
+      <%# 画像がある場合の処理 %>
       <% if @card.images.attached? %>
         <div class="images-container">
           <p class="annotation">※削除したい投稿画像をクリックして選択してください</p>
@@ -20,26 +20,22 @@
         </div>
       <% end %>
 
+     <%# 投稿オプション %>
       <div class="form-items-wrapper">
         <div class="form-items">
-          <%= f.label :images, "画像投稿", for: "file-input", class: "mobile" do %>
-            <i class="fas fa-images"></i>
-            <%= f.file_field :images, id: "file-input", multiple: true, style: "display: none;" %>
-          <% end %>
-          <%= f.label :images, "画像投稿", for: "file-input", class: "pc" do %>
-            <i class="fas fa-images"></i>：画像投稿
+          <%= f.label :images, "画像投稿", for: "file-input" do %>
+            <i class="fas fa-images"></i><span class="pc">：画像投稿</span>
             <%= f.file_field :images, id: "file-input", multiple: true, style: "display: none;" %>
           <% end %>
 
-          <%= f.label :publish_setting, "公開設定", class: "checked-publish mobile" do %>
-            <i class="fas fa-globe"></i>：
-            <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
-            <%= f.label :publish_setting do %>
+          <%# 公開設定 %>
+          <%= f.label :publish_setting, "公開設定", class: "checked-publish" do %>
+            <i class="fas fa-globe"></i><span class="pc">：公開する</span>
+            <% if @card.publish_setting == false %>
+              <%= f.check_box :publish_setting, { checked: false }, "true", "false" %>
+            <% else %>
+              <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
             <% end %>
-          <% end %>
-          <%= f.label :publish_setting, "公開設定", class: "checked-publish pc" do %>
-            <i class="fas fa-globe"></i>：公開設定
-            <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
             <%= f.label :publish_setting do %>
             <% end %>
           <% end %>

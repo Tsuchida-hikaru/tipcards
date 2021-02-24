@@ -27,7 +27,11 @@
           <% end %>
           <%= f.label :publish_setting, "公開設定", class: "checked-publish pc" do %>
             <i class="fas fa-globe"></i>：公開する
-            <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
+            <% if @user.publish_setting == 1 %>
+              <%= f.check_box :publish_setting, { checked: true }, "true", "false" %>
+            <% else %>
+              <%= f.check_box :publish_setting, { checked: false }, "true", "false" %>
+            <% end %>
             <%= f.label :publish_setting do %>
             <% end %>
           <% end %>

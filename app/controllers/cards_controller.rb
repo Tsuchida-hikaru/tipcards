@@ -3,12 +3,13 @@ class CardsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @user = User.find(current_user.id)
+    @user = User.find(current_user.id) if user_signed_in?
     @cards = Card.includes([:user, card_tag_relations: :tag]).order(updated_at: :DESC).page(params[:page]).per(5)
     @card = CardTag.new
   end
 
   def create
+    @user = User.find(current_user.id)
     @cards = Card.includes(:user).order(updated_at: :DESC).page(params[:page]).per(5)
     @card = CardTag.new(card_params)
     if @card.valid?

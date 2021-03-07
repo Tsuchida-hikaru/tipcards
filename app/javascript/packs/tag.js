@@ -1,4 +1,4 @@
-if (location.pathname.match("", "cards")) {
+if (location.pathname.match("", "cards", "cards/*/edit")) {
     document.addEventListener("DOMContentLoaded", () => {
         const inputElement = document.getElementById("card_tag_tag");
         inputElement.addEventListener("keyup", () => {
